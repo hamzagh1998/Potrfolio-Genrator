@@ -1,0 +1,45 @@
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container mt-4">
+      <h1>Portfolios Generator</h1>
+      <p class="lead text-muted">Hello and welcome to <font color="#0193FF">Portfolios Generator</font>, here you can create your portfolio in an easy way and for free!</p>
+      <p>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'users:profile_form' %}" class="btn btn-primary my-2">Create a new portfolio</a>
+        {% else %}
+          <a href="{% url 'users:login' %}" class="btn btn-primary my-2">Create a new portfolio</a>
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+    {% if profile %}
+      <div class="row">
+        {% for p in profile.all %}
+          {% if not p.user.is_superuser %}
+            <div class="col-xm-1 col-sm-2 col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <img src="{{ p.profile_pic.url }}" alt="user pic" height="200">
+                <div class="card-body">
+                  <li class="{{ p.country.flag_css }}"></li>
+                  <h3><a href="{% url 'users:user_profile' p.slug %}">{{ p.user.first_name }} {{ p.user.last_name }}</a></h3>
+                  <p class="card-text">{{ p.summary }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a class="btn btn-sm btn-outline-secondary" href="{% url 'users:user_profile' p.slug %}">View</a>
+                    </div>
+                    <small class="text-muted">{{ p.creation_date }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    </div>
+  </div>
+</main>

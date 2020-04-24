@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'flags/sprite.css' %}">
+  </head>
+  <body>
+    {% include "snippets/header.html" %}
+
+    {% block content %}
+
+    {% endblock %}
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p align="center">Developed by: Hamza Ghenimi &copy; all right reserved | {% now 'Y' %}</p>
+      </div>
+    </footer>
+  </body>
+  <script type="text/javascript" src="{% static 'main/js/jquery.js' %}"></script>
+  <script type="text/javascript" src="{% static 'main/js/popper.js' %}"></script>
+  <script type="text/javascript" src="{% static 'main/js/bootstrap.min.js' %}"></script>
+</html>
