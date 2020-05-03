@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_countries',
     'phone_field',
     'crispy_forms',
+    'tinymce',
     # My apps
     'users.apps.UsersConfig',
     'jobs.apps.JobsConfig',
